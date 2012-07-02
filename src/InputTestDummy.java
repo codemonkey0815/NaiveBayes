@@ -53,4 +53,10 @@ public class InputTestDummy implements Input {
 		return classIsZeroWrapper;
 	}
 
+	@Override
+	public void writeToFile(ArrayList<Integer> classifications) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

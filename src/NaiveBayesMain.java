@@ -22,7 +22,7 @@ public class NaiveBayesMain {
 		classifier.trainClassifier(input.getTrainingDataAttributes(), input.getTrainingDataClasses());
 		ArrayList<Integer> classifications = classifier.classify(input.getTestDataAttributes());
 		
-		Output.writeToFile(classifications);
+		input.writeToFile(classifications);
 		System.out.println("finished");
 	}
 }

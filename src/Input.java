@@ -35,4 +35,5 @@ public interface Input {
 	 */	
 	public ArrayList<ArrayList<Integer>> getTestDataAttributes();
 	
+	public void writeToFile(ArrayList<Integer> classifications);
 }
