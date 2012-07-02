@@ -16,16 +16,20 @@ public class ClassifyTest {
 	public static void main(String[] args) throws Exception {
 
 
-		createTestData();
-		test();
-		
-		
-	}
-
-	private static void test() throws Exception {
+//		createTestData();
+		trainPosteriorTest();
 		Classifier classy  = new NaiveBaseImpl();
 		classy.trainClassifier(examples, classes);
+		
+		ArrayList<Integer> classIsZero = new ArrayList<Integer>();
+		classIsZero.add(0);
+		classIsZero.add(1);
+		int classification = classy.classify(classIsZero);
+		if(classification == 0){
+			System.out.println("Eureka");
+		}
 	}
+
 
 	private static void createTestData() {
 		int classSize = 2;
@@ -46,8 +50,26 @@ public class ClassifyTest {
 		}
 		
 		// TODO Auto-generated method stub
+	}
+	
+	private static void trainPosteriorTest(){
+		ArrayList<Integer> ex1 = new ArrayList<Integer>();
+		ex1.add(0);
+		ex1.add(1);
+		
+		examples.add(ex1);
+		classes.add(0);
+		
+		ArrayList<Integer> ex2 = new ArrayList<Integer>();
+		ex2.add(1);
+		ex2.add(0);
+		
+		examples.add(ex2);
+		classes.add(1);
 		
 	}
+	
+	
 
 	private static int randomInt(int range) {
 		return (int) (Math.random()*range);

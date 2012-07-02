@@ -195,14 +195,37 @@ public class NaiveBaseImpl implements Classifier {
 
 
 	@Override
-	public int classify(ArrayList<Integer> example) throws Exception {
+	public int classify(ArrayList<Integer> example) throws Exception  {
 		if(!isTrained){
 			throw new Exception("Classifier not trained.");
 		}
+		ArrayList<Double> posteriors = new ArrayList<Double>();
+		for(int classNumber = 0; classNumber < countClasses.size(); classNumber++){
+			posteriors.add(calculatePosteriorForClassNumber(classNumber, example));
+		}
 		
+		int maximalPosteriorClass = -1;
+		double maximalPosterior = -1;
+		for(int classNumber = 0 ; classNumber <posteriors.size(); classNumber++){
+			if(posteriors.get(classNumber) > maximalPosterior){
+				maximalPosterior = posteriors.get(classNumber);
+				maximalPosteriorClass = classNumber;
+			}
+		}
 		
-		// TODO Auto-generated method stub
-		return 0;
+		return maximalPosteriorClass;
+	}
+
+
+	private Double calculatePosteriorForClassNumber(int classNumber, ArrayList<Integer> example ) {
+		double posterior = probabilityClasses.get(classNumber);
+		for(int attributeNumber = 0 ; attributeNumber < conditionalProbabilityOfAttributeByClass.size(); attributeNumber++){
+			if(example.get(attributeNumber) > 0){
+				posterior *= conditionalProbabilityOfAttributeByClass.get(attributeNumber).get(classNumber);
+			}
+			
+		}
+		return posterior;
 	}
 
 }
