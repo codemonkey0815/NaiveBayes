@@ -193,9 +193,16 @@ public class NaiveBaseImpl implements Classifier {
 		}
 	}
 
-
 	@Override
-	public int classify(ArrayList<Integer> example) throws Exception  {
+	public ArrayList<Integer> classify(ArrayList<ArrayList<Integer>> examples) throws Exception{
+		ArrayList<Integer> classifications = new ArrayList<Integer>();
+		for(ArrayList<Integer> example : examples){
+			classifications.add(classifyOneInstance(example));
+		}
+		return classifications;
+	}
+
+	private int classifyOneInstance(ArrayList<Integer> example) throws Exception  {
 		if(!isTrained){
 			throw new Exception("Classifier not trained.");
 		}

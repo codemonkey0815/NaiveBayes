@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
-
+/**
+ * Just a class for quick testing, Do please ignore, the code is abhorrent. 
+ * @author Keppi
+ *
+ */
 public class ClassifyTest {
 
 	
@@ -24,8 +28,10 @@ public class ClassifyTest {
 		ArrayList<Integer> classIsZero = new ArrayList<Integer>();
 		classIsZero.add(0);
 		classIsZero.add(1);
-		int classification = classy.classify(classIsZero);
-		if(classification == 0){
+		ArrayList<ArrayList<Integer>> classIsZeroWrapper = new ArrayList<ArrayList<Integer>>();
+		classIsZeroWrapper.add(classIsZero);
+		ArrayList<Integer> classification = classy.classify(classIsZeroWrapper);
+		if(classification.get(0) == 0){
 			System.out.println("Eureka");
 		}
 	}

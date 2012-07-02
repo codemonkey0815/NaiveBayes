@@ -6,8 +6,6 @@ public interface Classifier {
 	
 	public void trainClassifier(ArrayList<ArrayList<Integer>> trainingData, ArrayList<Integer> classes ) throws Exception;
 	
-	public int classify(ArrayList<Integer> example) throws Exception;
-	
-	
+	public ArrayList<Integer> classify(ArrayList<ArrayList<Integer>> example) throws Exception;
 	
 }
