@@ -7,7 +7,7 @@ public class NaiveBayesMain {
 	private static String trainingFileName = "trg.txt";
 	private static String outputFileName = "out.txt";
 	
-	private static Input input = new InputDummy();	
+	private static Input input = new InputTestDummy();	
 	private static Classifier classifier = new NaiveBaseImpl();
 	
 	/**
