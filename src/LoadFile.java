@@ -8,18 +8,30 @@ import java.util.Set;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
-
+/**
+ * Diese Klasse läd das Test und Trainingsfile. 
+ * @author Keppi
+ *
+ */
 public class LoadFile {
 
 	
 	
 	private static BufferedReader reader;
 	
-	private ArrayList<String> trainingDataClassification = new ArrayList<String>();
-	private ArrayList<ArrayList<String>> trainingDataWords = new ArrayList<ArrayList<String>>();
+	private ArrayList<String> trainingDataClassification 	= new ArrayList<String>();
+	private ArrayList<ArrayList<String>> trainingDataWords 	= new ArrayList<ArrayList<String>>();
+	private ArrayList<ArrayList<String>> testDataWords 		= new ArrayList<ArrayList<String>>();
 	
-	private ArrayList<ArrayList<String>> testDataWords = new ArrayList<ArrayList<String>>();
 	
+	/**
+	 * Diese Methode erstellt das LoadFile Objekt und läd die zwei Textdokumente.
+	 * Die Daten könenn über die drei Getter abgerufen werden.
+	 * @param pathToFiles
+	 * @param testFileName
+	 * @param trainingFileName
+	 * @return
+	 */
 	public static LoadFile getInstance(String pathToFiles, String testFileName, String trainingFileName){
 		LoadFile loadFile = new LoadFile();
 		loadFile.loadTestData(loadFile.getReader(pathToFiles, testFileName));
@@ -30,7 +42,7 @@ public class LoadFile {
 	/**
 	 * Needs a filepath to the data folder as parameter.
 	 */
-	public BufferedReader getReader(String pathName, String filename) {
+	private BufferedReader getReader(String pathName, String filename) {
 		File file = new File(pathName + "\\" + filename);
 		try {	
 			reader = new BufferedReader(new FileReader(file));
@@ -81,6 +93,18 @@ public class LoadFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
+	}
+
+	public ArrayList<String> getTrainingDataClassification() {
+		return trainingDataClassification;
+	}
+
+	public ArrayList<ArrayList<String>> getTrainingDataWords() {
+		return trainingDataWords;
+	}
+
+	public ArrayList<ArrayList<String>> getTestDataWords() {
+		return testDataWords;
 	}
 	
 	
