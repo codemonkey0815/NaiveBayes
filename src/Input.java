@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public interface Input {
 
 	
-	public Input getInstance(String pathToFiles, String testFileName, String trainingFileName);
+	public Input getInstance(String pathToFiles, String testFileName, String trainingFileName, String outputFileName);
 	
 	
 	/**

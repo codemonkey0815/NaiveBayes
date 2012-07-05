@@ -34,7 +34,7 @@ public class InputTestDummy implements Input {
 
 	@Override
 	public Input getInstance(String pathToFiles, String testFileName,
-			String trainingFileName) {
+			String trainingFileName, String pathName ) {
 		InputTestDummy input = new InputTestDummy();
 		input.addData();
 		return input;

@@ -18,7 +18,7 @@ public class NaiveBayesMain {
 	 */
 	public static void main(String[] args) throws Exception {
 		
-		input = input.getInstance(pathToFiles, testFileName, trainingFileName);
+		input = input.getInstance(pathToFiles, testFileName, trainingFileName, outputFileName);
 		
 		classifier.trainClassifier(input.getTrainingDataAttributes(), input.getTrainingDataClasses());
 		ArrayList<Integer> classifications = classifier.classify(input.getTestDataAttributes());

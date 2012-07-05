@@ -1,10 +1,19 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import org.w3c.dom.Element;
+
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
 
@@ -19,12 +28,13 @@ public class InputData implements Input{
 	ArrayList<String> wordsInOrder = new ArrayList<String>();
 	ArrayList<Integer> numberOfRepetitionsByWord = new ArrayList<Integer>();
 	
-	
+	String outFileName = "out.txt";
+	String path = "pathToFiles";
 	
 	@Override
-	public Input getInstance(String pathToFiles, String testFileName, String trainingFileName) {
+	public Input getInstance(String pathToFiles, String testFileName, String trainingFileName, String outputFileName) {
 		InputData inputData = new InputData();
-		inputData.instanitate(pathToFiles, testFileName, trainingFileName);
+		inputData.instanitate(pathToFiles, testFileName, trainingFileName, outputFileName);
 		return inputData;
 	}
 	
@@ -32,7 +42,11 @@ public class InputData implements Input{
 	
 
 	private void instanitate(String pathToFiles, String testFileName,
-			String trainingFileName) {
+			String trainingFileName, String outputFileName) {
+		outFileName = outputFileName;
+		path = pathToFiles;
+		
+		
 		loadFile = LoadFile.getInstance(pathToFiles, testFileName, trainingFileName);
 		parseClassifications();
 		countAndOrderWordsInTrainingSample();
@@ -178,8 +192,58 @@ public class InputData implements Input{
 
 	@Override
 	public void writeToFile(ArrayList<Integer> classifications) {
-		// TODO Auto-generated method stub
 		
+		File outFile = new File(path + "\\" + outFileName );
+		
+		File pathFile = new File(path+"\\");
+		if( !pathFile.exists()){
+			pathFile.mkdirs();
+		}
+		
+		try {
+			outFile.createNewFile();
+			
+			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outFile, true)));
+			
+			ArrayList<String> classificationStrings = reverseParseTheClassification(classifications);
+			
+			Iterator<String> classificationString = classificationStrings.iterator();
+			while(classificationString.hasNext()){
+				writer.print(classificationString);
+				writer.println();
+			}
+			writer.flush();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
+
+	private ArrayList<String> reverseParseTheClassification( ArrayList<Integer> classifications) {
+		
+		ArrayList<String> classificationStrings = new ArrayList<String>();
+		classifications = new ArrayList<Integer>();
+		
+		for(Integer classification: classifications){
+			if(classification.equals(0)){
+				classificationStrings.add("A");
+			}
+			if(classification.equals(1)){
+				classificationStrings.add("B");
+			}
+			if(classification.equals(2)){
+				classificationStrings.add("E");
+			}
+			if(classification.equals(3)){
+				classificationStrings.add("V");
+			}
+		}
+		return classificationStrings;
 	}
 
 }
