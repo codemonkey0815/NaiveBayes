@@ -9,33 +9,6 @@ public class InputTestDummy implements Input {
 	ArrayList<Integer> classIsZero = new ArrayList<Integer>();	
 	ArrayList<ArrayList<Integer>> classIsZeroWrapper = new ArrayList<ArrayList<Integer>>();
 	
-	@Override
-	public void loadTestData(String testFileName) {
-		
-		classIsZero.add(0);
-		classIsZero.add(1);
-
-		classIsZeroWrapper.add(classIsZero);
-		
-	}
-
-	@Override
-	public void loadTrainingData(String trainingFileName) {
-		ArrayList<Integer> ex1 = new ArrayList<Integer>();
-		ex1.add(0);
-		ex1.add(1);
-		
-		examples.add(ex1);
-		classes.add(0);
-		
-		ArrayList<Integer> ex2 = new ArrayList<Integer>();
-		ex2.add(1);
-		ex2.add(0);
-		
-		examples.add(ex2);
-		classes.add(1);
-		
-	}
 
 	@Override
 	public ArrayList<ArrayList<Integer>> getTrainingDataAttributes() {
@@ -57,6 +30,37 @@ public class InputTestDummy implements Input {
 	public void writeToFile(ArrayList<Integer> classifications) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Input getInstance(String pathToFiles, String testFileName,
+			String trainingFileName) {
+		InputTestDummy input = new InputTestDummy();
+		input.addData();
+		return input;
+	}
+	
+	public void addData(){
+		ArrayList<Integer> ex1 = new ArrayList<Integer>();
+		ex1.add(0);
+		ex1.add(1);
+		
+		examples.add(ex1);
+		classes.add(0);
+		
+		ArrayList<Integer> ex2 = new ArrayList<Integer>();
+		ex2.add(1);
+		ex2.add(0);
+		
+		examples.add(ex2);
+		classes.add(1);
+		
+		
+		
+		classIsZero.add(0);
+		classIsZero.add(1);
+
+		classIsZeroWrapper.add(classIsZero);
 	}
 
 }

@@ -6,8 +6,9 @@ public class NaiveBayesMain {
 	private static String testFileName = "tst.txt";
 	private static String trainingFileName = "trg.txt";
 	private static String outputFileName = "out.txt";
+	private static String pathToFiles = "E:";
 	
-	private static Input input = new InputTestDummy();	
+	private static Input input = new InputData();	
 	private static Classifier classifier = new NaiveBaseImpl();
 	
 	/**
@@ -17,11 +18,7 @@ public class NaiveBayesMain {
 	 */
 	public static void main(String[] args) throws Exception {
 		
-//		LoadFile load = LoadFile.getInstance("E:", "tst.txt", "trg.txt");
-		
-		
-		input.loadTestData(testFileName);
-		input.loadTrainingData(trainingFileName);
+		input = input.getInstance(pathToFiles, testFileName, trainingFileName);
 		
 		classifier.trainClassifier(input.getTrainingDataAttributes(), input.getTrainingDataClasses());
 		ArrayList<Integer> classifications = classifier.classify(input.getTestDataAttributes());
