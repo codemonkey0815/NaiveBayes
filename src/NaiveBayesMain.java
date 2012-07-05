@@ -16,6 +16,10 @@ public class NaiveBayesMain {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
+		
+//		LoadFile load = LoadFile.getInstance("E:", "tst.txt", "trg.txt");
+		
+		
 		input.loadTestData(testFileName);
 		input.loadTrainingData(trainingFileName);
 		
