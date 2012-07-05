@@ -209,7 +209,7 @@ public class InputData implements Input{
 			
 			Iterator<String> classificationString = classificationStrings.iterator();
 			while(classificationString.hasNext()){
-				writer.print(classificationString);
+				writer.print(classificationString.next());
 				writer.println();
 			}
 			writer.flush();
@@ -227,7 +227,6 @@ public class InputData implements Input{
 	private ArrayList<String> reverseParseTheClassification( ArrayList<Integer> classifications) {
 		
 		ArrayList<String> classificationStrings = new ArrayList<String>();
-		classifications = new ArrayList<Integer>();
 		
 		for(Integer classification: classifications){
 			if(classification.equals(0)){
