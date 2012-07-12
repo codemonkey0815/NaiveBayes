@@ -195,6 +195,9 @@ public class NaiveBaseImpl implements Classifier {
 
 	@Override
 	public ArrayList<Integer> classify(ArrayList<ArrayList<Integer>> examples) throws Exception{
+		if(!isTrained){
+			throw new Exception("Classifier not trained.");
+		}
 		ArrayList<Integer> classifications = new ArrayList<Integer>();
 		for(ArrayList<Integer> example : examples){
 			classifications.add(classifyOneInstance(example));
@@ -202,10 +205,7 @@ public class NaiveBaseImpl implements Classifier {
 		return classifications;
 	}
 
-	private int classifyOneInstance(ArrayList<Integer> example) throws Exception  {
-		if(!isTrained){
-			throw new Exception("Classifier not trained.");
-		}
+	private int classifyOneInstance(ArrayList<Integer> example) {
 		ArrayList<Double> posteriors = new ArrayList<Double>();
 		for(int classNumber = 0; classNumber < countClasses.size(); classNumber++){
 			posteriors.add(calculatePosteriorForClassNumber(classNumber, example));

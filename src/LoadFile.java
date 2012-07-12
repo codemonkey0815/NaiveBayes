@@ -77,13 +77,15 @@ public class LoadFile {
 	}
 	
 	/**
-	 * Läd eine Zeile Text als Stringlsite in die Arraylist für Testdaten.
+	 * Läd eine Zeile Text als Stringliste in die Arraylist für Testdaten.
 	 */
 	private void loadTestData(BufferedReader reader){
 		try {
 			String rawLine;
 			while ( ( rawLine = reader.readLine() ) != null){
-				String[] oneLineOfText = rawLine.split(" ");
+				String[] oneLineOfText = rawLine.split("\"");
+				oneLineOfText = oneLineOfText[1].split(" ");
+				oneLineOfText = rawLine.split(" ");
 				ArrayList<String> oneParsedLineOfText = new ArrayList<String>();
 				for(int i = 0 ; i < oneLineOfText.length ; i++){
 					oneParsedLineOfText.add(oneLineOfText[i].trim());
